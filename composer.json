@@ -1,0 +1,28 @@
+{
+    "name": "tweakers/symfony-service-mock",
+    "description": "Proxy layer to allow services to have their internals replaced with a test double, without affecting a service-container's (i.e. Symfony) bindings.",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Tweakers\\Test\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tweakers\\Test\\": "test/"
+        }
+    },
+    "require": {
+        "ocramius/proxy-manager": "2.1.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arjen van der Meijden",
+            "homepage": "https://tweakers.net/"
+        }
+    ]
+}
