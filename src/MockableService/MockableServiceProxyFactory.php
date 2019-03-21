@@ -16,16 +16,16 @@ class MockableServiceProxyFactory extends LazyLoadingValueHolderFactory
     /**
      * Create a service-proxy based on the given original.
      *
-     * @param object $original The service to proxy and use ad original.
+     * @param object $original The service to proxy and use as original.
      *
      * @return MockableService
      */
-    public function createServiceProxy(object $original)
+    public function createServiceProxy(object $original): MockableService
     {
         /** @var MockableService $proxy */
-        $proxy = $this->createProxy(get_class($original), function () use ($original) {return $original; }, []);
+        $proxy = $this->createProxy(get_class($original), function () use ($original) {return $original; });
 
-        $proxy->setOriginal($original);
+        $proxy->setOriginalService($original);
 
         return $proxy;
     }

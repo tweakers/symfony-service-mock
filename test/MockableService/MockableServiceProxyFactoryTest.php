@@ -19,7 +19,7 @@ class MockableServiceProxyFactoryTest extends TestCase
     /** @var MockableService|FakeService $proxy */
     private $proxy;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -32,7 +32,7 @@ class MockableServiceProxyFactoryTest extends TestCase
     }
 
     /** @test */
-    public function it_should_generate_a_mockable_service_proxy()
+    public function it_should_generate_a_mockable_service_proxy(): void
     {
         $this->assertInstanceOf(MockableService::class, $this->proxy);
         $this->assertInstanceOf(FakeService::class, $this->proxy);
@@ -41,17 +41,17 @@ class MockableServiceProxyFactoryTest extends TestCase
     }
 
     /** @test */
-    public function it_should_generate_a_working_set_alternative()
+    public function it_should_generate_a_working_set_alternative(): void
     {
-        $this->proxy->setAlternative($this->alternative);
+        $this->proxy->setAlternativeService($this->alternative);
         $this->assertEquals($this->alternative->getValue(), $this->proxy->getValue());
     }
 
     /** @test */
-    public function it_should_generate_a_working_reset()
+    public function it_should_generate_a_working_reset(): void
     {
-        $this->proxy->setAlternative($this->alternative);
-        $this->proxy->reset();
+        $this->proxy->setAlternativeService($this->alternative);
+        $this->proxy->restoreOriginalServices();
 
         $this->assertEquals($this->original->getValue(), $this->proxy->getValue());
     }

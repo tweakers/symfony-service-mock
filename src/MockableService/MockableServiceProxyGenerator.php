@@ -15,7 +15,7 @@ use Zend\Code\Generator\PropertyGenerator;
  * The intended use is in conjunction with services that need to be 'mocked' (or otherwise replaced by a test double) during testing.
  *
  * It generates a proxy that 'forwards' all calls to the original implementation by default,
- * but allows to set an alternative implementation (i.e. a mock, fake, etc). When a test is done, the proxy can be 'reset' to the original service.
+ * but allows to set an alternative implementation (i.e. a mock, fake, etc). When a test is done, the proxy can be 'restored' to the original service.
  *
  * @note The only reason it extends the LazyLoading-proxy is simply because that already did most of the necessary work.
  *
@@ -24,9 +24,9 @@ use Zend\Code\Generator\PropertyGenerator;
  * In addition to that property, it adds an 'originalService'-property to keep track of the 'default' service
  *
  * It also adds these methods to allow modifying the state:
- * 'setOriginal' @see SetOriginalGenerator
- * 'setAlternative' @see SetAlternativeGenerator
- * 'reset' @see ResetGenerator
+ * 'setOriginalService' @see SetOriginalGenerator
+ * 'setAlternativeService' @see SetAlternativeGenerator
+ * 'restoreOriginalServices' @see RestoreOriginalsGenerator
  *
  * @author Arjen
  */
@@ -46,7 +46,7 @@ class MockableServiceProxyGenerator extends LazyLoadingValueHolderGenerator
 
         $classGenerator->addPropertyFromGenerator($original);
 
-        ClassGeneratorUtils::addMethodIfNotFinal($originalClass, $classGenerator, new ResetGenerator($original, $valueHolder));
+        ClassGeneratorUtils::addMethodIfNotFinal($originalClass, $classGenerator, new RestoreOriginalsGenerator($original, $valueHolder));
         ClassGeneratorUtils::addMethodIfNotFinal($originalClass, $classGenerator, new SetAlternativeGenerator($valueHolder));
         ClassGeneratorUtils::addMethodIfNotFinal($originalClass, $classGenerator, new SetOriginalGenerator($original, $valueHolder));
     }
