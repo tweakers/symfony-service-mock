@@ -11,6 +11,13 @@ As such, when you need a temporary test double in a unit or functional test, you
 This library allows you to add an alternative configuration to Symfony, which replaces the service with a special proxy that will allow you to
 gain complete control over the 'internals', even after Symfony has initialized the service and started using it as dependency in related services.
 
+## Installation
+
+Just include this as a dev dependency:
+```
+composer require --dev tweakers/symfony-service-mock
+```
+
 ## How to use
 Any service that is configured in Symfony can be re-configured in the [test-environment's](https://symfony.com/doc/current/testing.html) specific services.yaml.
 For this library to work optimally, you should reconfigure those services as a [decorator](https://symfony.com/doc/current/service_container/service_decoration.html).
