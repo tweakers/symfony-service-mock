@@ -24,5 +24,5 @@ interface MockableService
     /**
      * Remove the 'alternative' service and revert to 'original' service.
      */
-    public function restoreOriginalServices(): void;
+    public function restoreOriginalService(): void;
 }

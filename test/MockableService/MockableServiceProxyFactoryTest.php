@@ -51,7 +51,7 @@ class MockableServiceProxyFactoryTest extends TestCase
     public function it_should_generate_a_working_reset(): void
     {
         $this->proxy->setAlternativeService($this->alternative);
-        $this->proxy->restoreOriginalServices();
+        $this->proxy->restoreOriginalService();
 
         $this->assertEquals($this->original->getValue(), $this->proxy->getValue());
     }

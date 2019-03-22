@@ -82,7 +82,7 @@ class TestServiceTest extends KernelTestCase
         parent::tearDown();
         
         // Make sure the original version is restored inside the proxy
-        self::$container->get(TestService::class)->reset();
+        self::$container->get(TestService::class)->restoreOriginalService();
     }
 
     public function testServiceBehaviorCanBeChanged(): void
@@ -97,19 +97,19 @@ class TestServiceTest extends KernelTestCase
         $mock = $this->createMock(TestService::class);
         $mock->method('getStuff')->willReturn(42);
         
-        $service->setAlternative($mock);
+        $service->setAlternativeService($mock);
 
         $this->assertSame(42, $service->getStuff());
         
         // Revert to original service
-        $service->reset();
+        $service->restoreOriginalService();
         $this->assertSame(39, $service->getStuff());
     }
 }
 ``` 
 
 ## Compatibility
-This code has only been tested with Symfony 3.4 and 4.1, although it should work with 4.0 and older versions.
-In Symfony 4.1 a [TestContainer](https://symfony.com/blog/new-in-symfony-4-1-simpler-service-testing) was introduced that gives access to private services.
+This code has only been tested with Symfony 3.4, 4.1 and 4.2, although it should work with 4.0 and older versions.
+In Symfony 4.1 a [TestContainer](https://symfony.com/blog/new-in-symfony-4-1-simpler-service-testing) was introduced that gives access to private services. So it may not be necessary to define a service as public with Symfony 4.1 and higher.
 Symfony however does 'inline' or completely remove unused private services (even in 4.1), so tests may fail due to missing services if you define everything private.
 To prevent inlining, the example above creates the proxies with public=true, but it may also be necessary to redefine specific services as well.
