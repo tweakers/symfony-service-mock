@@ -5,10 +5,10 @@ namespace Tweakers\Test\MockableService;
 use PHPUnit\Framework\TestCase;
 use Zend\Code\Generator\PropertyGenerator;
 
-class SetOriginalGeneratorTest extends TestCase
+class OriginalPropertyGeneratorTest extends TestCase
 {
     /** @test */
-    public function it_should_generate_a_set_method()
+    public function it_should_generate_a_set_method(): void
     {
         $original    = new PropertyGenerator('original');
         $valueHolder = new PropertyGenerator('valueHolder');
@@ -21,7 +21,7 @@ class SetOriginalGeneratorTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    public function setOriginal(object $original) : void
+    public function setOriginalService(object $original) : void
     {
         $this->original = $original;
         $this->valueHolder = $original;

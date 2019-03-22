@@ -9,11 +9,11 @@ use Zend\Code\Generator\PropertyGenerator;
 /**
  * Generator for a setOriginal-method that sets the 'base' service which is used by default within the proxy.
  *
- * It stores both a reference for a later reset-call as the value that is used.
+ * It stores both a reference for a later restore-call as the value that is used.
  *
  * It generates this method:
  *
- * public function setOriginal(object $original) : void
+ * public function setOriginalService(object $original) : void
  * {
  *   $this->originalService = $original;
  *   $this->valueHolder = $original;
@@ -25,7 +25,7 @@ class SetOriginalGenerator extends MethodGenerator
 {
     public function __construct(PropertyGenerator $original, PropertyGenerator $valueHolder)
     {
-        parent::__construct('setOriginal');
+        parent::__construct('setOriginalService');
 
         $originalParameter = new ParameterGenerator('original');
         $originalParameter->setType('object');

@@ -8,7 +8,7 @@ use Zend\Code\Generator\PropertyGenerator;
 class SetAlternativeGeneratorTest extends TestCase
 {
     /** @test */
-    public function it_should_generate_a_set_method()
+    public function it_should_generate_a_set_method(): void
     {
         $valueHolder = new PropertyGenerator('valueHolder');
 
@@ -20,7 +20,7 @@ class SetAlternativeGeneratorTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    public function setAlternative(object $alternative) : void
+    public function setAlternativeService(object $alternative) : void
     {
         $this->valueHolder = $alternative;
     }

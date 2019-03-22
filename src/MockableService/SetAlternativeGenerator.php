@@ -11,7 +11,7 @@ use Zend\Code\Generator\PropertyGenerator;
  *
  * It generates this method:
  *
- * public function setAlternative(object $alternative) : void
+ * public function setAlternativeService(object $alternative) : void
  * {
  *   $this->valueHolder = $alternative;
  * }
@@ -22,7 +22,7 @@ class SetAlternativeGenerator extends MethodGenerator
 {
     public function __construct(PropertyGenerator $valueHolder)
     {
-        parent::__construct('setAlternative');
+        parent::__construct('setAlternativeService');
 
         $alternativeParameter = new ParameterGenerator('alternative');
         $alternativeParameter->setType('object');

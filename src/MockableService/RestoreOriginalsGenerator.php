@@ -6,11 +6,11 @@ use ProxyManager\Generator\MethodGenerator;
 use Zend\Code\Generator\PropertyGenerator;
 
 /**
- * Generator for a reset-method that restores the original service as 'the service to use' within the proxy.
+ * Generator for a restore-method that restores the original service as 'the service to use' within the proxy.
  *
  * It generates this method:
  *
- * public function setOriginal(object $original) : void
+ * public function restoreOriginalServices(object $original) : void
  * {
  *   $this->originalService = $original;
  *   $this->valueHolder = $original;
@@ -18,11 +18,11 @@ use Zend\Code\Generator\PropertyGenerator;
  *
  * @author Arjen van der Meijden <acm@tweakers.net>
  */
-class ResetGenerator extends MethodGenerator
+class RestoreOriginalsGenerator extends MethodGenerator
 {
     public function __construct(PropertyGenerator $original, PropertyGenerator $valueHolder)
     {
-        parent::__construct('reset');
+        parent::__construct('restoreOriginalServices');
 
         $this->setDocBlock('{@inheritDoc}');
         $this->setReturnType('void');
