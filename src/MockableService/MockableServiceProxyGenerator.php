@@ -26,7 +26,7 @@ use Zend\Code\Generator\PropertyGenerator;
  * It also adds these methods to allow modifying the state:
  * 'setOriginalService' @see SetOriginalGenerator
  * 'setAlternativeService' @see SetAlternativeGenerator
- * 'restoreOriginalServices' @see RestoreOriginalsGenerator
+ * 'restoreOriginalService' @see RestoreOriginalsGenerator
  *
  * @author Arjen
  */

@@ -10,7 +10,7 @@ use Zend\Code\Generator\PropertyGenerator;
  *
  * It generates this method:
  *
- * public function restoreOriginalServices(object $original) : void
+ * public function restoreOriginalService(object $original) : void
  * {
  *   $this->originalService = $original;
  *   $this->valueHolder = $original;
@@ -22,7 +22,7 @@ class RestoreOriginalsGenerator extends MethodGenerator
 {
     public function __construct(PropertyGenerator $original, PropertyGenerator $valueHolder)
     {
-        parent::__construct('restoreOriginalServices');
+        parent::__construct('restoreOriginalService');
 
         $this->setDocBlock('{@inheritDoc}');
         $this->setReturnType('void');

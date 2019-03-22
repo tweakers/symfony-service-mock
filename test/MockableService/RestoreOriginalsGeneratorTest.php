@@ -21,7 +21,7 @@ class RestoreOriginalsGeneratorTest extends TestCase
     /**
      * {@inheritDoc}
      */
-    public function restoreOriginalServices() : void
+    public function restoreOriginalService() : void
     {
         $this->valueHolder = $this->original;
     }

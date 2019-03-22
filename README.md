@@ -82,7 +82,7 @@ class TestServiceTest extends KernelTestCase
         parent::tearDown();
         
         // Make sure the original version is restored inside the proxy
-        self::$container->get(TestService::class)->restoreOriginalServices();
+        self::$container->get(TestService::class)->restoreOriginalService();
     }
 
     public function testServiceBehaviorCanBeChanged(): void
@@ -102,7 +102,7 @@ class TestServiceTest extends KernelTestCase
         $this->assertSame(42, $service->getStuff());
         
         // Revert to original service
-        $service->restoreOriginalServices();
+        $service->restoreOriginalService();
         $this->assertSame(39, $service->getStuff());
     }
 }
