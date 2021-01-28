@@ -2,8 +2,8 @@
 
 namespace Tweakers\Test\MockableService;
 
+use Laminas\Code\Generator\PropertyGenerator;
 use ProxyManager\Generator\Util\UniqueIdentifierGenerator;
-use Zend\Code\Generator\PropertyGenerator;
 
 /**
  * Generator for the originalService-property.

@@ -2,8 +2,8 @@
 
 namespace Tweakers\Test\MockableService;
 
+use Laminas\Code\Generator\PropertyGenerator;
 use ProxyManager\Generator\MethodGenerator;
-use Zend\Code\Generator\PropertyGenerator;
 
 /**
  * Generator for a restore-method that restores the original service as 'the service to use' within the proxy.

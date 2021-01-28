@@ -2,8 +2,8 @@
 
 namespace Tweakers\Test\MockableService;
 
+use Laminas\Code\Generator\PropertyGenerator;
 use PHPUnit\Framework\TestCase;
-use Zend\Code\Generator\PropertyGenerator;
 
 class SetAlternativeGeneratorTest extends TestCase
 {

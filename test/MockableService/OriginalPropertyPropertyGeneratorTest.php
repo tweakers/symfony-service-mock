@@ -2,10 +2,10 @@
 
 namespace Tweakers\Test\MockableService;
 
+use Laminas\Code\Generator\PropertyGenerator;
 use PHPUnit\Framework\TestCase;
-use Zend\Code\Generator\PropertyGenerator;
 
-class OriginalPropertyGeneratorTest extends TestCase
+class OriginalPropertyPropertyGeneratorTest extends TestCase
 {
     /** @test */
     public function it_should_generate_a_set_method(): void
