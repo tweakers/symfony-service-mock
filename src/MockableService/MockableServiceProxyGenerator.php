@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use Laminas\Code\Generator\ClassGenerator;
 use Laminas\Code\Generator\PropertyGenerator;
 use ProxyManager\Generator\Util\ClassGeneratorUtils;
-use ProxyManager\ProxyGenerator\LazyLoadingValueHolderGenerator;
+use ProxyManager\ProxyGenerator\AccessInterceptorValueHolderGenerator;
 use ReflectionClass;
 
 /**
@@ -30,12 +30,13 @@ use ReflectionClass;
  *
  * @author Arjen
  */
-class MockableServiceProxyGenerator extends LazyLoadingValueHolderGenerator
+class MockableServiceProxyGenerator extends AccessInterceptorValueHolderGenerator
 {
     public function generate(ReflectionClass $originalClass, ClassGenerator $classGenerator)
     {
         parent::generate($originalClass, $classGenerator);
 
+        /** @var string[] $implementedInterfaces */
         $implementedInterfaces   = $classGenerator->getImplementedInterfaces();
         $implementedInterfaces[] = MockableService::class;
 
