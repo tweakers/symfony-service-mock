@@ -3,11 +3,11 @@
 namespace Tweakers\Test\MockableService;
 
 use InvalidArgumentException;
+use Laminas\Code\Generator\ClassGenerator;
+use Laminas\Code\Generator\PropertyGenerator;
 use ProxyManager\Generator\Util\ClassGeneratorUtils;
 use ProxyManager\ProxyGenerator\LazyLoadingValueHolderGenerator;
 use ReflectionClass;
-use Zend\Code\Generator\ClassGenerator;
-use Zend\Code\Generator\PropertyGenerator;
 
 /**
  * Generator for Proxy-classes that allows switching the underlying implementation.

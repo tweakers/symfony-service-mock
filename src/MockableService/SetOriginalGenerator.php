@@ -2,9 +2,9 @@
 
 namespace Tweakers\Test\MockableService;
 
+use Laminas\Code\Generator\ParameterGenerator;
+use Laminas\Code\Generator\PropertyGenerator;
 use ProxyManager\Generator\MethodGenerator;
-use Zend\Code\Generator\ParameterGenerator;
-use Zend\Code\Generator\PropertyGenerator;
 
 /**
  * Generator for a setOriginal-method that sets the 'base' service which is used by default within the proxy.
