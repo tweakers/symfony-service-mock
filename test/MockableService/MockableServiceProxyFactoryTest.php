@@ -16,48 +16,89 @@ class MockableServiceProxyFactoryTest extends TestCase
     /** @var FakeService */
     private $alternative;
 
-    /** @var MockableService|FakeService $proxy */
-    private $proxy;
-
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->original    = new FakeService('orig');
         $this->alternative = new FakeService('mock');
-
-        $factory = new MockableServiceProxyFactory();
-
-        $this->proxy = $factory->createServiceProxy($this->original);
     }
 
     /** @test */
     public function it_should_generate_a_mockable_service_proxy(): void
     {
-        $this->assertInstanceOf(MockableService::class, $this->proxy);
-        $this->assertInstanceOf(FakeService::class, $this->proxy);
+        $factory = new MockableServiceProxyFactory();
+        /** @var FakeService&MockableService $proxy */
+        $proxy = $factory->createServiceProxy($this->original);
 
-        $this->assertEquals($this->original->getValue(), $this->proxy->getValue());
+        $this->assertInstanceOf(MockableService::class, $proxy);
+        $this->assertInstanceOf(FakeService::class, $proxy);
+
+        $this->assertEquals($this->original->getValue(), $proxy->getValue());
     }
 
     /** @test */
     public function it_should_generate_a_working_set_alternative(): void
     {
-        $this->proxy->setAlternativeService($this->alternative);
-        $this->assertEquals($this->alternative->getValue(), $this->proxy->getValue());
+        $factory = new MockableServiceProxyFactory();
+        /** @var FakeService&MockableService $proxy */
+        $proxy = $factory->createServiceProxy($this->original);
+
+        $proxy->setAlternativeService($this->alternative);
+        $this->assertEquals($this->alternative->getValue(), $proxy->getValue());
     }
 
     /** @test */
     public function it_should_generate_a_working_reset(): void
     {
-        $this->proxy->setAlternativeService($this->alternative);
-        $this->proxy->restoreOriginalService();
+        $factory = new MockableServiceProxyFactory();
+        /** @var FakeService&MockableService $proxy */
+        $proxy = $factory->createServiceProxy($this->original);
 
-        $this->assertEquals($this->original->getValue(), $this->proxy->getValue());
+        $proxy->setAlternativeService($this->alternative);
+        $proxy->restoreOriginalService();
+
+        $this->assertEquals($this->original->getValue(), $proxy->getValue());
+    }
+
+    /** @test */
+    public function it_should_generate_a_mockable_service_proxy_via_an_interface(): void
+    {
+        $original = new FinalFakeService('value');
+
+        $factory = new MockableServiceProxyFactory();
+        /** @var FinalFakeService&MockableService $proxy */
+        $proxy = $factory->createInterfaceServiceProxy($original, TestInterface::class);
+
+        $this->assertInstanceOf(MockableService::class, $proxy);
+        $this->assertInstanceOf(TestInterface::class, $proxy);
+
+        $this->assertEquals($original->getValue(), $proxy->getValue());
     }
 }
 
-class FakeService
+interface TestInterface
+{
+    public function getValue(): string;
+}
+
+class FakeService implements TestInterface
+{
+    /** @var string */
+    private $value;
+
+    public function __construct(string $value)
+    {
+        $this->value = $value;
+    }
+
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+}
+
+final class FinalFakeService implements TestInterface
 {
     /** @var string */
     private $value;
